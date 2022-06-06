@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Simulation.lab._14
 {
     public partial class Form1 : Form
     {
-        
-        systemTemp bank;
+
+        systemTemp bank = new systemTemp();
         humanGenerator generator;
         le_operatori oper_une;
         le_operatori oper_deux;
@@ -26,7 +20,7 @@ namespace Simulation.lab._14
             oper_deux = new le_operatori(btn_oper_2);
             oper_trois = new le_operatori(btn_oper_3);
             generator = new humanGenerator();
-            bank = new systemTemp();
+            // bank = new systemTemp();
         }
 
         private void btn_start_Click(object sender, EventArgs e)
@@ -47,27 +41,30 @@ namespace Simulation.lab._14
         {
             lbl_ppl_count.Text = Convert.ToString(bank.queue);
 
-            generator.time_cheker(bank, (int)nud_avg_service_time.Value);
+            generator.time_cheker(bank, (int)nud_avg_new_ppl.Value);
             oper_une.time_cheker();
             oper_deux.time_cheker();
             oper_trois.time_cheker();
-            
-           if (oper_une.isFree && bank.queue != 0)
-           {
+
+            if (oper_une.isFree && bank.queue != 0)
+            {
                 oper_une.notFree(bank, (int)nud_avg_service_time.Value);
                 bank.DeleteHumanFromQueue();
-           }
-           if (oper_deux.isFree && bank.queue != 0)
-           {
+                lbl_ppl_count.Text = Convert.ToString(bank.queue);
+            }
+            if (oper_deux.isFree && bank.queue != 0)
+            {
                 oper_deux.notFree(bank, (int)nud_avg_service_time.Value);
                 bank.DeleteHumanFromQueue();
-           }
-           if (oper_trois.isFree && bank.queue != 0)
-           {
+                lbl_ppl_count.Text = Convert.ToString(bank.queue);
+            }
+            if (oper_trois.isFree && bank.queue != 0)
+            {
                 oper_trois.notFree(bank, (int)nud_avg_service_time.Value);
                 bank.DeleteHumanFromQueue();
-           }
-            
+                lbl_ppl_count.Text = Convert.ToString(bank.queue);
+            }
+
 
 
 
@@ -115,16 +112,17 @@ namespace Simulation.lab._14
     public class systemTemp
     {
 
-        public int queue = 10;
+        public int queue = 5;
 
         public void AddHumanToQueue()
         {
-            queue += 1;
+            queue = queue + 1;
+
         }
 
         public void DeleteHumanFromQueue()
         {
-            queue += -1;
+            queue = queue - 1;
         }
 
         public int getTime(int average)
@@ -134,13 +132,13 @@ namespace Simulation.lab._14
 
             Random rnd = new Random();
 
-            sum += Math.Log(rnd.Next());
-            //while (sum >= -average)
-            //{
-            //    m++;
-            //    sum += Math.Log(rnd.Next());
-            //}
-            return average;
+            sum += Math.Log(rnd.NextDouble());
+            while (sum >= -average)
+            {
+                m++;
+                sum += Math.Log(rnd.NextDouble());
+            }
+            return m;
         }
     }
 
