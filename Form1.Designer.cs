@@ -65,7 +65,6 @@
             // btn_oper_1
             // 
             this.btn_oper_1.BackColor = System.Drawing.Color.Lime;
-            this.btn_oper_1.Enabled = false;
             this.btn_oper_1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_oper_1.Location = new System.Drawing.Point(44, 94);
             this.btn_oper_1.Name = "btn_oper_1";
@@ -220,6 +219,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 50;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
@@ -256,9 +256,6 @@
         #endregion
 
         private System.Windows.Forms.Button btn_exit;
-        private System.Windows.Forms.Button btn_oper_1;
-        private System.Windows.Forms.Button btn_oper_2;
-        private System.Windows.Forms.Button btn_oper_3;
         private System.Windows.Forms.Label lbl_oper_1;
         private System.Windows.Forms.Label lbl_oper_2;
         private System.Windows.Forms.Label lbl_oper_3;
@@ -271,6 +268,9 @@
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Button btn_oper_1;
+        public System.Windows.Forms.Button btn_oper_2;
+        public System.Windows.Forms.Button btn_oper_3;
     }
 }
 
