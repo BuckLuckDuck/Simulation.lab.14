@@ -261,7 +261,6 @@
         private System.Windows.Forms.Label lbl_oper_3;
         private System.Windows.Forms.Label lbl_ppl;
         private System.Windows.Forms.Label lbl_ppl_count;
-        private System.Windows.Forms.NumericUpDown nud_avg_new_ppl;
         private System.Windows.Forms.Label lbl_avg_new_ppl;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nud_avg_service_time;
@@ -271,6 +270,7 @@
         public System.Windows.Forms.Button btn_oper_1;
         public System.Windows.Forms.Button btn_oper_2;
         public System.Windows.Forms.Button btn_oper_3;
+        public System.Windows.Forms.NumericUpDown nud_avg_new_ppl;
     }
 }
 
