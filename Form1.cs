@@ -25,30 +25,62 @@ namespace Simulation.lab._14
             oper_une = new le_operatori(btn_oper_1);
             oper_deux = new le_operatori(btn_oper_2);
             oper_trois = new le_operatori(btn_oper_3);
+            generator = new humanGenerator();
+            bank = new systemTemp();
         }
 
         private void btn_start_Click(object sender, EventArgs e)
         {
-
+            btn_start.Visible = false;
+            timer1.Start();
+            btn_stop.Visible = true;
         }
 
         private void btn_stop_Click(object sender, EventArgs e)
         {
-
+            btn_stop.Visible = false;
+            timer1.Stop();
+            btn_start.Visible = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            lbl_ppl_count.Text = Convert.ToString(bank.queue);
+
+            generator.time_cheker(bank, (int)nud_avg_service_time.Value);
+            oper_une.time_cheker();
+            oper_deux.time_cheker();
+            oper_trois.time_cheker();
             
+           if (oper_une.isFree && bank.queue != 0)
+           {
+                oper_une.notFree(bank, (int)nud_avg_service_time.Value);
+                bank.DeleteHumanFromQueue();
+           }
+           if (oper_deux.isFree && bank.queue != 0)
+           {
+                oper_deux.notFree(bank, (int)nud_avg_service_time.Value);
+                bank.DeleteHumanFromQueue();
+           }
+           if (oper_trois.isFree && bank.queue != 0)
+           {
+                oper_trois.notFree(bank, (int)nud_avg_service_time.Value);
+                bank.DeleteHumanFromQueue();
+           }
+            
+
+
+
+            generator.time_new_client += -1;
+            oper_une.service_time += -1;
+            oper_deux.service_time += -1;
+            oper_trois.service_time += -1;
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-        
-        
-
     }
     // 1. Генератор создает число, через какое время появиться новый человек
     // 2. Генератор создает человека
@@ -65,16 +97,16 @@ namespace Simulation.lab._14
             obj.AddHumanToQueue();
         }
 
-        void time_cheker(systemTemp obj, int average)
+        public void time_cheker(systemTemp obj, int average)
         {
-            if (time_new_client == 0)
+            if (time_new_client <= 0)
             {
                 GenerateHuman(obj);
                 time_new_client = obj.getTime(average);
             }
         }
 
-        humanGenerator()
+        public humanGenerator()
         {
             time_new_client = 0;
         }
@@ -83,7 +115,7 @@ namespace Simulation.lab._14
     public class systemTemp
     {
 
-        public int queue = 0;
+        public int queue = 10;
 
         public void AddHumanToQueue()
         {
@@ -98,25 +130,25 @@ namespace Simulation.lab._14
         public int getTime(int average)
         {
             double sum = 0;
-            int m = 0;
+            int m = 1;
 
             Random rnd = new Random();
 
             sum += Math.Log(rnd.Next());
-            while (sum >= -average)
-            {
-                m++;
-                sum += Math.Log(rnd.Next());
-            }
-            return m;
+            //while (sum >= -average)
+            //{
+            //    m++;
+            //    sum += Math.Log(rnd.Next());
+            //}
+            return average;
         }
     }
 
     public class le_operatori
     {
-        Button box;
-        bool isFree;
-        int service_time;
+        public Button box;
+        public bool isFree;
+        public int service_time;
 
         public le_operatori(Button btn_le_opera)
         {
@@ -126,17 +158,18 @@ namespace Simulation.lab._14
             box.BackColor = Color.Lime;
         }
 
-        void time_cheker()
+        public void time_cheker()
         {
-            if (service_time == 0)
+            if (service_time <= 0)
             {
                 isFree = true;
                 box.BackColor = Color.Lime;
             }
         }
 
-        void notFree()
+        public void notFree(systemTemp obj, int avg)
         {
+            service_time = obj.getTime(avg);
             isFree = false;
             box.BackColor = Color.IndianRed;
         }

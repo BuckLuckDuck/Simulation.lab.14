@@ -157,6 +157,11 @@
             this.nud_avg_new_ppl.Size = new System.Drawing.Size(120, 26);
             this.nud_avg_new_ppl.TabIndex = 9;
             this.nud_avg_new_ppl.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nud_avg_new_ppl.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
             // lbl_avg_new_ppl
             // 
@@ -191,6 +196,11 @@
             this.nud_avg_service_time.Size = new System.Drawing.Size(120, 26);
             this.nud_avg_service_time.TabIndex = 11;
             this.nud_avg_service_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nud_avg_service_time.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // btn_start
             // 
@@ -208,7 +218,7 @@
             // 
             this.btn_stop.BackColor = System.Drawing.Color.Coral;
             this.btn_stop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn_stop.Location = new System.Drawing.Point(750, 378);
+            this.btn_stop.Location = new System.Drawing.Point(750, 351);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(197, 54);
             this.btn_stop.TabIndex = 14;
@@ -219,14 +229,14 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 50;
+            this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 458);
+            this.ClientSize = new System.Drawing.Size(1032, 431);
             this.Controls.Add(this.btn_stop);
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.label1);
