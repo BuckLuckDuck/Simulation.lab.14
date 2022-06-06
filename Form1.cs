@@ -16,5 +16,25 @@ namespace Simulation.lab._14
         {
             InitializeComponent();
         }
+
+        private void btn_start_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_stop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }        
     }
 }
