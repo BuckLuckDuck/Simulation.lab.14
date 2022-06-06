@@ -197,7 +197,7 @@
             this.nud_avg_service_time.TabIndex = 11;
             this.nud_avg_service_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nud_avg_service_time.Value = new decimal(new int[] {
-            7,
+            10,
             0,
             0,
             0});
